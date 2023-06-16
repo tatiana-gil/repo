@@ -66,7 +66,7 @@ VALUES (2, 'Poman', 'Pass', 'Poman@mail.ru');
 postgres=# INSERT INTO accounts(user_id, username, password, email)
 VALUES (3, 'Bogdan', 'Pass', 'Bogdan@mail.ru');
 ```
-* ___Выполнено подключение к контейнеру с сервером с ноутбука извне инстансов ВМ___
+* __Выполнено подключение к контейнеру с сервером с ноутбука извне инстансов ВМ__
 ```
 login as: tatiana
 tatiana@192.168.56.102's password:
@@ -85,7 +85,7 @@ postgres=# select * from accounts;
        3 | Bogdan   | Pass     | Bogdan@mail.ru
 (3 rows)
 ```
-* ___Удален контейнер с сервером___
+* __Удален контейнер с сервером__
 ```
 root@ubuntu:/var/lib/postgres# sudo docker stop e0de28938b13
 e0de28938b13
@@ -96,7 +96,7 @@ CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 root@ubuntu:/var/lib/postgres# sudo docker rm e0de28938b13
 e0de28938b13
 ```
-* ___Контейнер создан заново___
+* __Контейнер создан заново__
 ```
 root@ubuntu:/var/lib/postgres# sudo docker run --name pg-server --network pg-net -e POSTGRES_PASSWORD=postgres -d -p 5432:5432 -v /var/lib/postgres:/var/lib/postgresql/data postgres:15
 2c7038877c029d59f625f98915af790379b0267348331504a0dd1d197da7605f
@@ -105,13 +105,13 @@ root@ubuntu:/var/lib/postgres# docker ps -a
 CONTAINER ID   IMAGE         COMMAND                  CREATED          STATUS          PORTS                                       NAMES
 2c7038877c02   postgres:15   "docker-entrypoint.s…"   32 seconds ago   Up 32 seconds   0.0.0.0:5432->5432/tcp, :::5432->5432/tcp   pg-server
 ```
-* ___Выполнено подключение снова из контейнера с клиентом к контейнеру с сервером___
+* __Выполнено подключение снова из контейнера с клиентом к контейнеру с сервером__
 ```
 root@ubuntu:/var/lib/postgres# sudo docker run -it --rm --network pg-net --name pg-client postgres:15 psql -h pg-server -U postgres
 Password for user postgres: 
 psql (15.3 (Debian 15.3-1.pgdg120+1))
 ```
-* ___Выполнена проверка, что данные остались на месте___
+* __Выполнена проверка, что данные остались на месте__
 ```
 postgres=# \l
                                                  List of databases
