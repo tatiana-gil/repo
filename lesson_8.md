@@ -1,8 +1,8 @@
 # MVCC, vacuum и autovacuum.
-* __Создать инстанс ВМ с 2 ядрами и 4 Гб ОЗУ и SSD 10GB__
+* __Создать инстанс ВМ с 2 ядрами и 4 Гб ОЗУ и SSD 10GB__   
 _Инстанс создан_
 
-* __Установить на него PostgreSQL 15 с дефолтными настройками__
+* __Установить на него PostgreSQL 15 с дефолтными настройками__   
 _PostgreSQL 15 установлен_
 ```
 postgres@ubuntu:~$ pg_lsclusters
@@ -53,7 +53,7 @@ latency stddev = 5.362 ms
 initial connection time = 23.773 ms
 tps = 674.352888 (without initial connection time)
 ```
-* __Применить параметры настройки PostgreSQL из прикрепленного к материалам занятия файла__
+* __Применить параметры настройки PostgreSQL из прикрепленного к материалам занятия файла__   
 _Изначальные параметры:_
 ```
 max_connections = 100                   # (change requires restart)
