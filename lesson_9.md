@@ -179,9 +179,7 @@ postgres=# SELECT pg_current_wal_insert_lsn();
 postgres@ubuntu:/var/lib/postgresql/15/main/global$ sudo /usr/lib/postgresql/15/bin/pg_waldump -p /var/lib/postgresql/15/main/pg_wal -s 1/862D2B78 -e 1/862D2C60 000000010000000100000086
 
 rmgr: Standby     len (rec/tot):     50/    50, tx:          0, lsn: 1/862D2B78, prev 1/862D2B40, desc: RUNNING_XACTS nextXid 705509 latestCompletedXid 705508 oldestRunningXid 705509
-
 rmgr: XLOG        len (rec/tot):    114/   114, tx:          0, lsn: 1/862D2BB0, prev 1/862D2B78, desc: CHECKPOINT_ONLINE redo 1/862D2B78; tli 1; prev tli 1; fpw true; xid 0:705509; oid 41450; multi 1; offset 0; oldest xid 716 in DB 1; oldest multi 1 in DB 5; oldest/newest commit timestamp xid: 0/0; oldest running xid 705509; online
-
 rmgr: Standby     len (rec/tot):     50/    50, tx:          0, lsn: 1/862D2C28, prev 1/862D2BB0, desc: RUNNING_XACTS nextXid 705509 latestCompletedXid 705508 oldestRunningXid 705509
 ```
 В журнал попадает запись о том, что контрольная точка пройдена - CHECKPOINT_ONLINE.
@@ -277,9 +275,9 @@ latency stddev = 1.506 ms
 initial connection time = 13.871 ms
 tps = 4184.164496 (without initial connection time)
 ```
-tps в синхронном режиме составило 1007, в асинхронном 4184
-__tps = 1007.330773 (without initial connection time)__
-__tps = 4184.164496 (without initial connection time)__
+tps в синхронном режиме составило 1007, в асинхронном 4184   
+__tps = 1007.330773 (without initial connection time)__   
+__tps = 4184.164496 (without initial connection time)__   
 
 Пропускная способность (число транзакций в секунду, подсчитанное без учёта времени установления подключения к серверу) в асинхронном режиме больше, т.к. во время этого режима транзакции завершаются быстрее (но увеличивается вероятность потери данных при падении бд) 
 
@@ -370,7 +368,6 @@ postgres@ubuntu:~$ psql -p 5434
 postgres=# select * from people;
 WARNING:  page verification failed, calculated checksum 44039 but expected 31982
 ERROR:  invalid page in block 0 of relation base/5/16389
-postgres=# 
 ```
 Ошибка контрольной суммы, изменим параметр ignore_checksum_failure , чтобы проигнорировать ошибку и продолжить работу
 ```
