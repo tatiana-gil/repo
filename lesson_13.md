@@ -103,7 +103,7 @@ postgres@ubuntu:/tmp/backup$ pg_dump -t 'schema_bkp.table_bkp*' -d bkp --create 
 postgres@ubuntu:/tmp/backup$ ls -l
 -rw-rw-r-- 1 postgres postgres 4591 авг  1 21:13 arch.gz
 ```
-__Используя утилиту pg_restore восстановили в новую БД только вторую таблицу:_
+__Используя утилиту pg_restore восстановили в новую БД только вторую таблицу:__
 ```
 postgres=# create database bkp_2;
 CREATE DATABASE
@@ -154,7 +154,7 @@ pg_restore: error: input file does not appear to be a valid archive
 ```
 postgres@ubuntu:/tmp/backup$ pg_restore -t schema_bkp.table_bkp_2 -d bkp_2 /tmp/backup/arch.gz
 ```
-_Примечание из postgrespro:_
+_Примечание из postgrespro:_   
 Этот флаг (-t) действует не совсем так, как флаг -t утилиты pg_dump. В настоящее время pg_restore не поддерживает выбор объектов по маске, а также не позволяет указать имя схемы с -t. 
 
 * Когда восстанавливаешь таблицу необходимо, чтобы в новой бд была также создана схема, в которую будет идти рестор. Иначе получаем такую ошибку: 
