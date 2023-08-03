@@ -61,18 +61,19 @@ postgres=# ALTER SYSTEM SET wal_level = logical;
 ALTER SYSTEM
 ```
 __В postgresql.conf раскомментировали и поменяли параметр listen_addresses на '*':__
-
+```
 postgres@ubuntu:~$ vi /etc/postgresql/15/1_for_repl/postgresql.conf
 listen_addresses = '*'
-
-В pg_hba.conf добавили строки:
-
+```
+__В pg_hba.conf добавили строки:__
+```
 postgres@ubuntu:~$ vi /etc/postgresql/15/1_for_repl/pg_hba.conf 
 
+...
 #for otus logical replication
 host    all             all             0.0.0.0/0           scram-sha-256
 host    all             all             ::/0                scram-sha-256
-
+```
 __Сделали рестарт кластера для применения новых параметров:__
 ```
 postgres@ubuntu:~$ pg_ctlcluster 15 1_for_repl restart 
@@ -190,7 +191,7 @@ __На 2 ВМ создали публикацию таблицы test2:__
 log_replica=# CREATE PUBLICATION pub_test2 FOR TABLE test2;
 CREATE PUBLICATION
 ```
-__На 1 ВМ подписались на ранее созданную публикацию:
+__На 1 ВМ подписались на ранее созданную публикацию:__
 ```
 log_replica=# CREATE SUBSCRIPTION test2_sub 
 CONNECTION 'host=192.168.56.103 port=5434 user=postgres password=2121More35 dbname=log_replica' 
