@@ -285,9 +285,12 @@ GROUP BY G.good_name;
  Автомобиль Ferrari FXX K | 185000000.01
  Спички хозайственные     |        65.50
 (2 rows)
-
+```
+__И проверим работу триггера на UPDATE:__
+```
 trigger_db=# UPDATE sales SET sales_qty = 90
 WHERE (good_id=1);
+
 trigger_db=# SELECT G.good_name, sum(G.good_price * S.sales_qty)
 FROM goods G                             
 INNER JOIN sales S ON S.good_id = G.goods_id
